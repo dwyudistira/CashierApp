@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pembelian', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->integer("no_telp");
-            $table->integer("produkId");
-            $table->integer("point");
-            $table->integer("quantity");
+            $table->string("phone_number");
+            $table->foreignId("product_id")->nullable()->constrained("products")->onDelete("cascade");
+            $table->unsignedInteger("points");
+            $table->unsignedInteger("quantity");
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pembelian');
+        Schema::dropIfExists('purchases');
     }
 };

@@ -12,21 +12,24 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-
+                    @if(Auth::user()->role == "Administrator")
+                        <x-nav-link :href="route('main')" :active="request()->routeIs('/admin/main')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @elseif(Auth::user()->role == "Petugas")
+                    @endif
+                    
                     @if(Auth::user()->role == "Administrator")
                         <x-nav-link :href="route('admin.pembelian')">
                             {{ __('Pembelian') }}
                         </x-nav-link>
                     @elseif(Auth::user()->role == "Petugas")
-                        <x-nav-link :href="route('petugas.pembelian')">
+                        <x-nav-link :href="route('dashboard')">
                             {{ __('Pembelian') }}
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('dashboard')">
+                    <x-nav-link :href="route('admin.product')">
                         {{ __('Produk') }}
                     </x-nav-link>
                     

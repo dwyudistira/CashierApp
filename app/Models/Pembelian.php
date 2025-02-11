@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pembelian extends Model
 {
-    protected $table = 'pembelian';
+    protected $table = 'purchases';
 
     protected $fillable = [
-        'name',
-        'no_telp',
-        'point',
+        'name', 
+        'phone_number', 
+        'points', 
         'quantity',
     ];
+
     
     public function Pembelian(){
         return $this->belongsTo(Produk::class, "id" ,"productId");
