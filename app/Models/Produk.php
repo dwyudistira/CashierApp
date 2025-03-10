@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    //
     protected $table = "products";
 
-    protected $fillable =[
+    protected $fillable = [
         'name',
         'price',
         'stock',
         'image',
     ];
 
-    public function Pembelian(){
-        return $this->hasMany(Produk::class, "id" ,"productId");
+    // Relasi ke Pembelian (Satu produk bisa memiliki banyak pembelian)
+    public function pembelians()
+    {
+        return $this->hasMany(Pembelian::class, 'product_id', 'id');
     }
 }
+

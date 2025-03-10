@@ -11,7 +11,7 @@ class ProdukController extends Controller
     //
 
     public function index(){
-        $products = Produk::all();
+        $products = Produk::paginate(10);
 
         return view("admin.produk.index", compact('products'));
     }
@@ -24,7 +24,7 @@ class ProdukController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|integer',
+            'price' => 'required|numeric',  
             'stock' => 'required|integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);

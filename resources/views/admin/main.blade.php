@@ -40,80 +40,10 @@
         </div>
     </div>
 
-    <!-- Load Chart.js dan ApexCharts -->
+    <!-- Load Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{ asset('js/chart-bar.js') }}"></script>
+    <script src="{{ asset('js/chart-pie.js') }}"></script>
 
-    <script>
-        function renderCharts() {
-            // ========== Chart.js Bar Chart ==========
-
-            let ctx = document.getElementById("chartjs-bar").getContext("2d");
-
-            // Hapus chart jika sudah ada sebelumnya
-            if (window.barChart) {
-                window.barChart.destroy();
-            }
-
-            window.barChart = new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["Jan", "Feb", "Mar"],
-                    datasets: [{
-                        label: "Last year",
-                        backgroundColor: "#4F46E5",
-                        borderColor: "#4F46E5",
-                        hoverBackgroundColor: "#4F46E5",
-                        hoverBorderColor: "#4F46E5",
-                        data: [54, 67, 41],
-                        barPercentage: 1.75,
-                        categoryPercentage: 0.5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // ========== ApexCharts Pie Chart ==========
-            let pieChartEl = document.querySelector("#apexcharts-pie");
-
-            if (pieChartEl) {
-                // Hapus chart jika sudah ada sebelumnya
-                if (window.pieChart) {
-                    window.pieChart.destroy();
-                }
-
-                let pieOptions = {
-                    chart: {
-                        height: 350,
-                        type: "pie",
-                    },
-                    dataLabels: { enabled: false },
-                    series: [44, 55, 13, 33],
-                    labels: ["Product A", "Product B", "Product C", "Product D"]
-                };
-
-                window.pieChart = new ApexCharts(pieChartEl, pieOptions);
-                window.pieChart.render();
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", renderCharts);
-    </script>
 </x-app-layout>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId("product_id")->nullable()->constrained("products")->onDelete("cascade");
             $table->unsignedInteger("points");
             $table->unsignedInteger("quantity");
+            $table->string("made_by");
             $table->timestamps();
         });
     }

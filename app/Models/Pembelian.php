@@ -13,10 +13,13 @@ class Pembelian extends Model
         'phone_number', 
         'points', 
         'quantity',
+        'made_by',
+        'product_id', // Tambahkan kolom foreign key ke product
     ];
 
-    
-    public function Pembelian(){
-        return $this->belongsTo(Produk::class, "id" ,"productId");
+    // Relasi ke Produk (Setiap pembelian memiliki satu produk)
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class, 'product_id', 'id');
     }
 }
